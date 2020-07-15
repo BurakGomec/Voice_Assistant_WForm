@@ -1,0 +1,9 @@
+C:\Users\burak\source\repos\VoiceControl\VoiceControl\bin\Debug\VoiceControl.exe.config
+C:\Users\burak\source\repos\VoiceControl\VoiceControl\bin\Debug\VoiceControl.exe
+C:\Users\burak\source\repos\VoiceControl\VoiceControl\bin\Debug\VoiceControl.pdb
+C:\Users\burak\source\repos\VoiceControl\VoiceControl\obj\Debug\VoiceControl.csprojAssemblyReference.cache
+C:\Users\burak\source\repos\VoiceControl\VoiceControl\obj\Debug\VoiceControl.Form1.resources
+C:\Users\burak\source\repos\VoiceControl\VoiceControl\obj\Debug\VoiceControl.Properties.Resources.resources
+C:\Users\burak\source\repos\VoiceControl\VoiceControl\obj\Debug\VoiceControl.csproj.GenerateResource.cache
+C:\Users\burak\source\repos\VoiceControl\VoiceControl\obj\Debug\VoiceControl.exe
+C:\Users\burak\source\repos\VoiceControl\VoiceControl\obj\Debug\VoiceControl.pdb
