@@ -12,17 +12,14 @@ using System.Speech.Recognition;//Sesi Tanıma
 using System.Speech.Synthesis;
 using System.Media;
 using System.Diagnostics;
-using System.Collections;
 using System.Globalization;//totitlecase
 
 namespace VoiceControl
 {
-    public partial class Form1 : Form
+    public partial class FormVoice : Form
     {
         SpeechRecognitionEngine rec = new SpeechRecognitionEngine();
         SpeechSynthesizer speech = new SpeechSynthesizer();
-
-        //SpeechSynthesizer syn = new SpeechSynthesizer();
         SoundPlayer player = new SoundPlayer();
         string on =Application.StartupPath+"\\SiriOn.wav";
         string off =Application.StartupPath+ "\\SiriOff.wav";
@@ -34,8 +31,8 @@ namespace VoiceControl
             {
                 System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
                 Choices choices = new Choices();
-                string[] words = { "hello", "paint", "word", "google", "youtube", "what time is it","how are you"
-                ,"hey assistant","open google","exit the application"};
+                string[] words = { "hello", "open paint", "open word", "open google", "open youtube", "what time is it","how are you"
+                ,"hey assistant","exit the application","stop listen"};
                 choices.Add(words);
                 Grammar grammar = new Grammar(new GrammarBuilder(choices));
                 //Grammar grammar = new DictationGrammar();
@@ -59,7 +56,7 @@ namespace VoiceControl
         }
 
 
-        public Form1()
+        public FormVoice()
         {
             InitializeComponent();
         }
@@ -67,11 +64,10 @@ namespace VoiceControl
         private void Speechrecognized(object sender, SpeechRecognizedEventArgs e)
         {
             //timer1.Enabled = true;
-            
             string result = e.Result.Text;
             string newy = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(result);
             richTextBox1.AppendText("You: " + newy + Environment.NewLine);
-            if (result == "Hey assistant")
+            if (result == "hey assistant")
             {
                 result = "Hi,how can i help u ";
             }
@@ -84,50 +80,72 @@ namespace VoiceControl
             {
                 result = "It is" + DateTime.Now.ToLongTimeString();
             }
-            if (result.Contains("youtube"))
+            if(result.Contains("youtube"))
             {
                 System.Diagnostics.Process.Start("https://www.youtube.com/?gl=TR");
                 result = "Opening youtube";
             }
            
-            if (result.Contains("google"))
+            if(result.Contains("google"))
             {
                 result = "Opening google";
                 System.Diagnostics.Process.Start("https://www.google.com.tr");
             }
-            if (result == "open paint")
+            if(result.Contains("paint"))
             {
-                result = "It is" + DateTime.Now.ToLongTimeString();
+                result = "Opening paint";
+                System.Diagnostics.Process.Start("MSpaint.Exe");
+                
             }
-            if (result == "open word")
+            if(result == "open word")
             {
-                result = "It is" + DateTime.Now.ToLongTimeString();
+                result = "Opening word";
+                
             }
-            if (result == "exit the application")
+            if(result == "exit the application")
             {
                 result = "Okey closing it";
+                //player.SoundLocation = off;
+                //player.Play();
                 Application.Exit();
+                
             }
-            if (result == "what time is it")
+            if(result == "what time is it")
             {
                 result = "It is" + DateTime.Now.ToLongTimeString();
             }
-            if (result == "what time is it")
+            if(result == "what time is it")
             {
                 result = "It is" + DateTime.Now.ToLongTimeString();
             }
-            else if(result == "" || result==null)
-            {
-                result = "Would you repeat?";
-            }
+            //if (result.Contains("stop listen"))
+            //{
+                
+            //    result = "Okey,i stopped listen";
+            //    player.SoundLocation = understood;
+            //    player.Play();
+            //    speech.SpeakAsync(result);
+            //    richTextBox1.AppendText("Assistant: " + result + Environment.NewLine);
+            //    if(result.Contains("keep listening"))
+            //    {
+            //        result = "Okey,i listening you";
+
+            //    }
+
+            //}
+       
+            //else (result == "" || result==null)
+            //{
+            //    result = "Would you repeat?";
+                
+            //}
 
             player.SoundLocation = understood;
             player.Play();
             speech.SpeakAsync(result);
             richTextBox1.AppendText("Assistant: " + result + Environment.NewLine);
-            // System.Diagnostics.Process.Start("MSpaint.Exe");
-            //rec.Dispose();
-            //speech.Dispose();
+           
+            
 
         }
 
