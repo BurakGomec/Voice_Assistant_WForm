@@ -7,3 +7,4 @@ C:\Users\burak\source\repos\VoiceControl\VoiceControl\obj\Debug\VoiceControl.csp
 C:\Users\burak\source\repos\VoiceControl\VoiceControl\obj\Debug\VoiceControl.exe
 C:\Users\burak\source\repos\VoiceControl\VoiceControl\obj\Debug\VoiceControl.pdb
 C:\Users\burak\source\repos\VoiceControl\VoiceControl\obj\Debug\VoiceControl.FormVoice.resources
+C:\Users\burak\source\repos\VoiceControl\VoiceControl\obj\Debug\VoiceControl.Product.resources
