@@ -20,12 +20,12 @@ namespace VoiceControl
             connect.Open();
             DataSet data = new DataSet();
             adapter.Fill(data, "products");
-            dataGridView1.AutoResizeColumns();
-           dataGridView1.AutoResizeColumns();
-            //dataGridView1.AutoResizeRows();
+            dataGridView1.AutoResizeRows();
             dataGridView1.DataSource = data.Tables["products"];
             adapter.Dispose();
             connect.Dispose();
+               
+                
         }
 
 
@@ -51,7 +51,7 @@ namespace VoiceControl
             }
             catch(Exception e)
             {
-                MessageBox.Show("Database de sorun var");
+                MessageBox.Show(e.Message.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
      }

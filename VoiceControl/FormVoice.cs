@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Speech;
-using System.Speech.Recognition;//Sesi Tanıma
+using System.Speech.Recognition;
 using System.Speech.Synthesis;
 using System.Media;
 using System.Diagnostics;
@@ -33,7 +33,7 @@ namespace VoiceControl
                 System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
                 Choices choices = new Choices();
                 string[] words = { "hello", "open paint", "open word", "open google", "open youtube", "what time is it","how are you"
-                ,"hey assistant","exit the application","stop listen"};
+                ,"hey assistant","exit the application","stop listen","open other form"};
                 choices.Add(words);
                 Grammar grammar = new Grammar(new GrammarBuilder(choices));
                 rec.LoadGrammar(grammar);
@@ -43,12 +43,12 @@ namespace VoiceControl
             }
             catch (InvalidOperationException)
             {
-                MessageBox.Show("Lutfen bilgisayarinizin dilini ingilizceye cevirip tekrar deneyin", "Error!");
+                MessageBox.Show("Lutfen bilgisayarinizin dilini ingilizceye cevirip tekrar deneyin", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message.ToString(),"Error!");
+                MessageBox.Show(e.Message.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
@@ -129,12 +129,6 @@ namespace VoiceControl
                 System.Diagnostics.Process.Start("MSpaint.Exe");
                 
             }
-            if(result == "open word")
-            {
-                //not complete
-                result = "Opening word";
-                
-            }
             if(result == "exit the application")
             {
                 result = "Okey closing it";
@@ -153,11 +147,15 @@ namespace VoiceControl
             if(result == "stop listen")
             {
                 result = "I stopped listening to you";
-                //speech.SpeakAsyncCancelAll();
-                rec.RecognizeAsyncCancel(); //tanımayı cancel et
+                rec.RecognizeAsyncCancel();
                 pictureBox1.Enabled = true;
                 labelActivate.Visible = true;
 
+            }
+            if(result=="open other form")
+            {
+                result = "Opening now";
+                OpenAnotherForm();
             }
             if (!control)
             {
@@ -185,23 +183,37 @@ namespace VoiceControl
             pictureBox1.Enabled = false;
             labelActivate.Visible = false;
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void OpenAnotherForm()
         {
             rec.Dispose();
             speech.Dispose();
             this.Hide();
             Product f2 = new Product();
             f2.FormClosing += f2_FormClosing;
-            //this.Dispose();
             f2.ShowDialog();
+        
         }
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            rec.Dispose();
+            speech.Dispose();
+            this.Hide();
+            Product f2 = new Product();
+            f2.FormClosing += f2_FormClosing;
+            f2.ShowDialog();
 
+
+        }
         private void f2_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Close();
             this.Dispose();
             
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            //not complete
         }
     }
 }

@@ -37,8 +37,6 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.labelActivate = new System.Windows.Forms.Label();
-            this.minbtn = new System.Windows.Forms.Button();
-            this.closebtn = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -75,6 +73,10 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Personal Voice Assistant";
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // listBox1
             // 
             this.listBox1.BackColor = System.Drawing.Color.Moccasin;
@@ -85,14 +87,14 @@
             this.listBox1.Items.AddRange(new object[] {
             "Hello",
             "Open Paint",
-            "Open Word",
             "Open Google",
             "Open Youtube",
             "What Time Is It ",
             "How Are U ",
             "Hey Assintant",
             "Exit The Application",
-            "Stop Listen"});
+            "Stop Listen",
+            "Open Other Form"});
             this.listBox1.Location = new System.Drawing.Point(17, 284);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(187, 253);
@@ -112,55 +114,28 @@
             // labelActivate
             // 
             this.labelActivate.AutoSize = true;
-            this.labelActivate.Font = new System.Drawing.Font("Arial", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.labelActivate.ForeColor = System.Drawing.Color.MediumSeaGreen;
-            this.labelActivate.Location = new System.Drawing.Point(832, 506);
+            this.labelActivate.Font = new System.Drawing.Font("Century", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.labelActivate.ForeColor = System.Drawing.Color.LightGray;
+            this.labelActivate.Location = new System.Drawing.Point(413, 388);
             this.labelActivate.Name = "labelActivate";
-            this.labelActivate.Size = new System.Drawing.Size(219, 38);
+            this.labelActivate.Size = new System.Drawing.Size(231, 35);
             this.labelActivate.TabIndex = 6;
-            this.labelActivate.Text = "Reactivate=>";
+            this.labelActivate.Text = "Click to Active";
             this.labelActivate.Visible = false;
-            // 
-            // minbtn
-            // 
-            this.minbtn.BackColor = System.Drawing.Color.Transparent;
-            this.minbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.minbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.minbtn.ForeColor = System.Drawing.Color.Transparent;
-            this.minbtn.Location = new System.Drawing.Point(970, 9);
-            this.minbtn.Margin = new System.Windows.Forms.Padding(4);
-            this.minbtn.Name = "minbtn";
-            this.minbtn.Size = new System.Drawing.Size(47, 38);
-            this.minbtn.TabIndex = 95;
-            this.minbtn.Text = "--";
-            this.minbtn.UseVisualStyleBackColor = false;
-            // 
-            // closebtn
-            // 
-            this.closebtn.BackColor = System.Drawing.Color.Transparent;
-            this.closebtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closebtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closebtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.closebtn.Location = new System.Drawing.Point(1025, 9);
-            this.closebtn.Margin = new System.Windows.Forms.Padding(4);
-            this.closebtn.Name = "closebtn";
-            this.closebtn.Size = new System.Drawing.Size(47, 38);
-            this.closebtn.TabIndex = 96;
-            this.closebtn.Text = "X";
-            this.closebtn.UseVisualStyleBackColor = false;
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.PaleGreen;
-            this.button1.Font = new System.Drawing.Font("Stencil", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.button1.Location = new System.Drawing.Point(839, 453);
+            this.button1.BackColor = System.Drawing.Color.Firebrick;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Font = new System.Drawing.Font("Century", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.button1.ForeColor = System.Drawing.Color.Turquoise;
+            this.button1.Location = new System.Drawing.Point(766, 498);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(219, 47);
+            this.button1.Size = new System.Drawing.Size(313, 56);
             this.button1.TabIndex = 97;
-            this.button1.Text = "Products";
+            this.button1.Text = "Products Voice Control";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // FormVoice
             // 
@@ -169,15 +144,13 @@
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(1078, 562);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.closebtn);
-            this.Controls.Add(this.minbtn);
             this.Controls.Add(this.labelActivate);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.richTextBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormVoice";
@@ -198,8 +171,6 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelActivate;
-        private System.Windows.Forms.Button minbtn;
-        private System.Windows.Forms.Button closebtn;
         private System.Windows.Forms.Button button1;
     }
 }

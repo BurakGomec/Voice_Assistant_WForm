@@ -25,6 +25,8 @@ namespace VoiceControl
         private void Product_Load(object sender, EventArgs e)
         {
            DbOperations.GetList(dataGridView1);
+           dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
+
 
 
         }
@@ -46,7 +48,7 @@ namespace VoiceControl
             }
             catch(Exception x)
             {
-                MessageBox.Show(x.Message.ToString(),"Error!");
+                MessageBox.Show(x.Message.ToString(),"Error!",MessageBoxButtons.OK,MessageBoxIcon.Error);
 
             }
         }
@@ -115,14 +117,28 @@ namespace VoiceControl
                 if (textBox_name.Text!="" && textBox_brand.Text!="" && textBox_piece.Text!="" && textBox_price.Text!="")
                 {
                     DbOperations.AddProduct(textBox_name, textBox_brand, textBox_price, textBox_piece);
-                    DbOperations.GetList(dataGridView1); //maybe try it 
+                    DbOperations.GetList(dataGridView1);
                 }
 
             }
             catch (Exception x)
             {
-                MessageBox.Show(x.Message.ToString(), "Error!");
+                MessageBox.Show(x.Message.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void buttonManuelAdd_Click(object sender, EventArgs e)
+        {
+            if(textBox_name.Text=="" || textBox_brand.Text=="" || textBox_price.Text=="" || textBox_piece.Text == "")
+            {
+                MessageBox.Show("Lutfen tum alanlari doldurunuz","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+            else
+            {
+                DbOperations.AddProduct(textBox_name, textBox_brand, textBox_price, textBox_piece);
+                DbOperations.GetList(dataGridView1);
+            }
+           
         }
     }
 }
