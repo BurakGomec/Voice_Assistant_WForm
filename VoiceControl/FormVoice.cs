@@ -15,15 +15,16 @@ using System.Diagnostics;
 using System.Globalization;//totitlecase
 using System.Threading;
 
+
 namespace VoiceControl
 {
     public partial class FormVoice : Form
     {
-        SpeechRecognitionEngine rec = new SpeechRecognitionEngine();
+        SpeechRecognitionEngine rec = new SpeechRecognitionEngine(new System.Globalization.CultureInfo("en-US"));
         SpeechSynthesizer speech = new SpeechSynthesizer();
         SoundPlayer player = new SoundPlayer();
-        string on =Application.StartupPath+"\\SiriOn.wav";
-        string understood =Application.StartupPath+"\\SiriUnderstood.wav";
+        readonly string on =Application.StartupPath+"\\SiriOn.wav";
+        readonly string understood =Application.StartupPath+"\\SiriUnderstood.wav";
         
         private void StartingVoice()
         {
@@ -35,11 +36,10 @@ namespace VoiceControl
                 ,"hey assistant","exit the application","stop listen"};
                 choices.Add(words);
                 Grammar grammar = new Grammar(new GrammarBuilder(choices));
-                //Grammar grammar = new DictationGrammar();
                 rec.LoadGrammar(grammar);
                 rec.SetInputToDefaultAudioDevice();
                 rec.RecognizeAsync(RecognizeMode.Multiple);
-                rec.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(Speechrecognized);
+                rec.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(SpeechRecognized);
             }
             catch (InvalidOperationException)
             {
@@ -55,13 +55,12 @@ namespace VoiceControl
        
         }
 
-
         public FormVoice()
         {
             InitializeComponent();
         }
-
-        private void Speechrecognized(object sender, SpeechRecognizedEventArgs e)
+      
+        private void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             timer1.Enabled = true;
             bool control = false;
@@ -82,7 +81,7 @@ namespace VoiceControl
                     player.Play();
                     speech.SpeakAsync(result);
                     richTextBox1.AppendText("\nHello, Open paint, Open word, Open google, Open youtube, What time is it, How are you," +
-                    "Hey assistant, Exit the application, Stop listen, Listen to me...");
+                    "Hey assistant, Exit the application, Stop listen...");
                 }
                 else
                 {
@@ -149,6 +148,7 @@ namespace VoiceControl
             if(result == "what time is it")
             {
                 result = "It is" + DateTime.Now.ToLongTimeString();
+                //not complete
             }
             if(result == "stop listen")
             {
@@ -188,11 +188,20 @@ namespace VoiceControl
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Product Product = new Product();
-            Product.Show();
-           
-            //FormVoice.ActiveForm.Close();
+            rec.Dispose();
+            speech.Dispose();
             this.Hide();
+            Product f2 = new Product();
+            f2.FormClosing += f2_FormClosing;
+            //this.Dispose();
+            f2.ShowDialog();
+        }
+
+        private void f2_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Close();
+            this.Dispose();
+            
         }
     }
 }

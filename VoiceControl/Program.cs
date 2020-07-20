@@ -18,5 +18,7 @@ namespace VoiceControl
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormVoice());
         }
+       
+
     }
 }
