@@ -33,7 +33,7 @@ namespace VoiceControl
                 System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
                 Choices choices = new Choices();
                 string[] words = { "hello", "open paint", "open word", "open google", "open youtube", "what time is it","how are you"
-                ,"hey assistant","exit the application","stop listen","open other form"};
+                ,"hey assistant","exit the application","stop listen","open other form","show todays exchange rate"};
                 choices.Add(words);
                 Grammar grammar = new Grammar(new GrammarBuilder(choices));
                 rec.LoadGrammar(grammar);
@@ -43,8 +43,9 @@ namespace VoiceControl
             }
             catch (InvalidOperationException)
             {
-                MessageBox.Show("Lutfen bilgisayarinizin dilini ingilizceye cevirip tekrar deneyin", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lutfen bilgisayariniza 'en-US' paketi yukleyip tekrar deneyin", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
+                //SpeechRecognitionEngine rec = new SpeechRecognitionEngine(new System.Globalization.CultureInfo("en-UK"));
             }
             catch (Exception e)
             {
@@ -54,19 +55,27 @@ namespace VoiceControl
 
        
         }
-
         public FormVoice()
         {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
             InitializeComponent();
         }
-      
+
+        private void ExchangeRate()
+        {
+            DataSet dsDovizKur = new DataSet();
+            dsDovizKur.ReadXml(@"http://www.tcmb.gov.tr/kurlar/today.xml");
+            richTextBox1.AppendText("Euro= " + dsDovizKur.Tables[1].Rows[3].ItemArray[4].ToString().Replace('.', ',') + "\n");
+            richTextBox1.AppendText("Dolar= " + dsDovizKur.Tables[1].Rows[0].ItemArray[4].ToString().Replace('.',',')+Environment.NewLine);
+        }
+
         private void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            timer1.Enabled = true;
-            bool control = false;
             string result = e.Result.Text;
             string newy = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(result);
             richTextBox1.AppendText("You: " + newy + Environment.NewLine);
+            //timer1.Enabled = true;
+            bool control = false;
             Random rd = new Random();
             if (result == "hey assistant")
             {
@@ -80,8 +89,8 @@ namespace VoiceControl
                     player.SoundLocation = understood;
                     player.Play();
                     speech.SpeakAsync(result);
-                    richTextBox1.AppendText("\nHello, Open paint, Open word, Open google, Open youtube, What time is it, How are you," +
-                    "Hey assistant, Exit the application, Stop listen...");
+                    richTextBox1.AppendText("\nHello, Open paint, Open google, Open youtube, What time is it, How are you," +
+                    "Hey assistant, Exit the application, Stop listen, Open other form,Show Todays Exchange Rate...");
                 }
                 else
                 {
@@ -90,7 +99,7 @@ namespace VoiceControl
                 
              
             }
-            if (result == "hello")
+            else if (result == "hello")
             {
                 
                 int i=rd.Next(1, 3);
@@ -104,47 +113,52 @@ namespace VoiceControl
                 }
 
             }
-            if(result == "how are you")
+            else if(result == "how are you")
             {
                 //not complete
             }
-            if(result == "what time is it" )
+            else if(result == "what time is it" )
             {
                 result = "It is" + DateTime.Now.ToLongTimeString();
             }
-            if(result == "open youtube" )
+            else if(result == "open youtube" )
             {
                 System.Diagnostics.Process.Start("https://www.youtube.com/?gl=TR");
                 result = "Opening youtube";
             }
            
-            if(result == "open google" )
+            else if(result == "open google" )
             {
                 result = "Opening google";
                 System.Diagnostics.Process.Start("https://www.google.com.tr");
             }
-            if(result == "open paint")
+            else if(result == "open paint")
             {
                 result = "Opening paint";
                 System.Diagnostics.Process.Start("MSpaint.Exe");
                 
             }
-            if(result == "exit the application")
+            else if(result == "exit the application")
             {
                 result = "Okey closing it";
                 Application.Exit();
                 
             }
-            if(result == "what time is it")
+            else if(result == "what time is it")
             {
                 result = "It is" + DateTime.Now.ToLongTimeString();
             }
-            if(result == "what time is it")
+            else if(result == "show todays exchange rate")
             {
-                result = "It is" + DateTime.Now.ToLongTimeString();
+                result = "I listing todays exchange rate";
+                player.SoundLocation = understood;
+                player.Play();
+                speech.SpeakAsync(result);
+                ExchangeRate();
+                control = true;
                 //not complete
             }
-            if(result == "stop listen")
+            else if(result == "stop listen")
             {
                 result = "I stopped listening to you";
                 rec.RecognizeAsyncCancel();
@@ -152,24 +166,27 @@ namespace VoiceControl
                 labelActivate.Visible = true;
 
             }
-            if(result=="open other form")
+            else if(result=="open other form")
             {
                 result = "Opening now";
+                control = true;
                 OpenAnotherForm();
             }
+            //else
+            //{
+            //    result = "Please repeat";
+
+            //}
             if (!control)
             {
+                richTextBox1.AppendText("Assistant: " + result + Environment.NewLine);
                 player.SoundLocation = understood;
                 player.Play();
                 speech.SpeakAsync(result);
-                richTextBox1.AppendText("Assistant: " + result + Environment.NewLine);
+                
+               
             }
-            timer1.Enabled = false;
-            Thread.Sleep(100);
-            //1000=>1 seconds 
-
-            
-
+            Thread.Sleep(1000); //3000 olarak test et
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -180,8 +197,10 @@ namespace VoiceControl
             player.SoundLocation = on;
             player.Play();
             StartingVoice();
+            //timer1.Start();
             pictureBox1.Enabled = false;
-            labelActivate.Visible = false;
+            labelActivate.Enabled = false;
+           
         }
         private void OpenAnotherForm()
         {
@@ -195,6 +214,7 @@ namespace VoiceControl
         }
         private void Button1_Click(object sender, EventArgs e)
         {
+            
             rec.Dispose();
             speech.Dispose();
             this.Hide();
@@ -213,6 +233,7 @@ namespace VoiceControl
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            //sayac++;
             //not complete
         }
     }

@@ -16,19 +16,27 @@ namespace VoiceControl
 {
     public partial class Product : Form
     {
+        List<string> word = new List<string>();
         public Product()
         {
             InitializeComponent();
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
+            AddNumberChoices();
+            
         }
 
         private void Product_Load(object sender, EventArgs e)
         {
            DbOperations.GetList(dataGridView1);
            dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
+        }
 
-
-
+        private void AddNumberChoices()
+        {
+            for (int i = 0; i <= 1000; i++)
+            {
+                word.Add(i.ToString());
+            }
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
@@ -37,14 +45,23 @@ namespace VoiceControl
             {
                 SpeechRecognitionEngine rec = new SpeechRecognitionEngine(new System.Globalization.CultureInfo("en-US"));
                 Choices choices = new Choices();
-                string[] words = { "name","brand","price","piece","hello","book","10","10"};
+                string[] words = { "name","brand","price","piece","book","phone","apple"};
+
+                foreach(var x in word)
+                {
+                    choices.Add(x);
+                }
+
                 choices.Add(words);
                 Grammar g = new Grammar(new GrammarBuilder(choices));
                 rec.LoadGrammar(g);
-                // rec.LoadGrammar(new DictationGrammar());
                 rec.SetInputToDefaultAudioDevice();
                 rec.RecognizeAsync(RecognizeMode.Multiple);
                 rec.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(SpeechProductRecognize);
+            }
+            catch (InvalidOperationException)
+            {
+                MessageBox.Show("Lutfen bilgisayariniza 'en-US' paketi yukleyip tekrar deneyin", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch(Exception x)
             {
@@ -67,7 +84,7 @@ namespace VoiceControl
                 }
                 if (textBox_name.BackColor == Color.LightGreen)
                 {
-                    if (result != "name" && result!="brand")
+                    if (result != "name" && result!="brand" && result!="price" && result!="piece")
                     {
                         textBox_name.Text = result;
                         textBox_name.BackColor = Color.White;
@@ -80,7 +97,7 @@ namespace VoiceControl
                 }
                 if (textBox_brand.BackColor == Color.LightGreen)
                 {
-                    if (result != "name" && result != "brand")
+                    if (result != "name" && result != "brand" && result!="price" && result!="piece")
                     {
                         textBox_brand.Text = result;
                         textBox_brand.BackColor = Color.White;
@@ -93,7 +110,7 @@ namespace VoiceControl
                 }
                 if (textBox_price.BackColor == Color.LightGreen)
                 {
-                    if (result != "name" && result != "brand" && result!="price")
+                    if (result != "name" && result != "brand" && result!="price" && result!="piece")
                     {
                         textBox_price.Text = result;
                         textBox_price.BackColor = Color.White;

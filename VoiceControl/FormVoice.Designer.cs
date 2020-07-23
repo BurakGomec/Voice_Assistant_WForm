@@ -94,10 +94,11 @@
             "Hey Assintant",
             "Exit The Application",
             "Stop Listen",
-            "Open Other Form"});
-            this.listBox1.Location = new System.Drawing.Point(17, 284);
+            "Open Other Form",
+            "Show Todays Exchange Rate"});
+            this.listBox1.Location = new System.Drawing.Point(17, 270);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(187, 253);
+            this.listBox1.Size = new System.Drawing.Size(268, 276);
             this.listBox1.TabIndex = 4;
             // 
             // label2
@@ -105,7 +106,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Stencil", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Moccasin;
-            this.label2.Location = new System.Drawing.Point(13, 257);
+            this.label2.Location = new System.Drawing.Point(13, 243);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(272, 24);
             this.label2.TabIndex = 5;
@@ -116,7 +117,7 @@
             this.labelActivate.AutoSize = true;
             this.labelActivate.Font = new System.Drawing.Font("Century", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.labelActivate.ForeColor = System.Drawing.Color.LightGray;
-            this.labelActivate.Location = new System.Drawing.Point(413, 388);
+            this.labelActivate.Location = new System.Drawing.Point(413, 389);
             this.labelActivate.Name = "labelActivate";
             this.labelActivate.Size = new System.Drawing.Size(231, 35);
             this.labelActivate.TabIndex = 6;
@@ -129,7 +130,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Century", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button1.ForeColor = System.Drawing.Color.Turquoise;
-            this.button1.Location = new System.Drawing.Point(766, 498);
+            this.button1.Location = new System.Drawing.Point(757, 498);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(313, 56);
             this.button1.TabIndex = 97;

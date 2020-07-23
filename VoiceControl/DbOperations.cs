@@ -15,20 +15,28 @@ namespace VoiceControl
        
         public static void GetList(DataGridView dataGridView1)
         {
-            SQLiteConnection connect = new SQLiteConnection("Data Source=products.db");
-            SQLiteDataAdapter adapter = new SQLiteDataAdapter("Select * from products", connect);
-            connect.Open();
-            DataSet data = new DataSet();
-            adapter.Fill(data, "products");
-            dataGridView1.AutoResizeRows();
-            dataGridView1.DataSource = data.Tables["products"];
-            adapter.Dispose();
-            connect.Dispose();
+            try
+            {
+                SQLiteConnection connect = new SQLiteConnection("Data Source=products.db");
+                SQLiteDataAdapter adapter = new SQLiteDataAdapter("Select * from products", connect);
+                connect.Open();
+                DataSet data = new DataSet();
+                adapter.Fill(data, "products");
+                dataGridView1.AutoResizeRows();
+                dataGridView1.DataSource = data.Tables["products"];
+                dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
+                adapter.Dispose();
+                connect.Dispose();
+            }
+            catch (Exception w)
+            {
+                MessageBox.Show(w.Message.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+
                
                 
         }
-
-
      public static void AddProduct(TextBox textBox_name, TextBox textBox_brand, TextBox textBox_price, TextBox textBox_piece)
      {
             try
