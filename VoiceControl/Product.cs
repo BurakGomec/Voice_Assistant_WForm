@@ -22,6 +22,7 @@ namespace VoiceControl
             InitializeComponent();
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
             AddNumberChoices();
+            TextBoxControl();
             
         }
 
@@ -29,6 +30,7 @@ namespace VoiceControl
         {
            DbOperations.GetList(dataGridView1);
            dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
+           dataGridView1.ClearSelection();
         }
 
         private void AddNumberChoices()
@@ -41,23 +43,26 @@ namespace VoiceControl
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
+            buttonAdd.Enabled = false;               
+            textBox_piece.Text = "";
+            textBox_price.Text = "";
             try
             {
                 SpeechRecognitionEngine rec = new SpeechRecognitionEngine(new System.Globalization.CultureInfo("en-US"));
                 Choices choices = new Choices();
-                string[] words = { "name","brand","price","piece","book","phone","apple"};
-
+                string[] words = { "name","brand","price","piece","book","phone","apple","tv","music player","philips","samsung","lg",
+                    "smart watch","speaker","headphone","microphone"};
                 foreach(var x in word)
                 {
                     choices.Add(x);
                 }
-
                 choices.Add(words);
                 Grammar g = new Grammar(new GrammarBuilder(choices));
                 rec.LoadGrammar(g);
                 rec.SetInputToDefaultAudioDevice();
                 rec.RecognizeAsync(RecognizeMode.Multiple);
                 rec.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(SpeechProductRecognize);
+                
             }
             catch (InvalidOperationException)
             {
@@ -69,13 +74,15 @@ namespace VoiceControl
 
             }
         }
-
+        private void TextBoxControl()
+        {
+            if (textBox_piece.Focus() || textBox_price.Focus()) { textBox_piece.Text = ""; textBox_price.Text = ""; }
+        }
         private void SpeechProductRecognize(object sender, SpeechRecognizedEventArgs e)
         {
             try
             {
                 string result = e.Result.Text;
-                richTextBox1.AppendText(result+Environment.NewLine);
                 if (result == "name")
                 {
                     textBox_name.Focus();
@@ -144,7 +151,7 @@ namespace VoiceControl
             }
         }
 
-        private void buttonManuelAdd_Click(object sender, EventArgs e)
+        private void ButtonManuelAdd_Click(object sender, EventArgs e)
         {
             if(textBox_name.Text=="" || textBox_brand.Text=="" || textBox_price.Text=="" || textBox_piece.Text == "")
             {

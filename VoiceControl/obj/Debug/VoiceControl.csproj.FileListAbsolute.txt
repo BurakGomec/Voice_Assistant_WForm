@@ -26,3 +26,6 @@ C:\Users\burak\source\repos\VoiceControl\VoiceControl\bin\Debug\System.Memory.xm
 C:\Users\burak\source\repos\VoiceControl\VoiceControl\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\burak\source\repos\VoiceControl\VoiceControl\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\burak\source\repos\VoiceControl\VoiceControl\obj\Debug\VoiceControl.csproj.CopyComplete
+C:\Users\burak\source\repos\VoiceControl\VoiceControl\bin\Debug\System.Speech.dll
+C:\Users\burak\source\repos\VoiceControl\VoiceControl\bin\Debug\System.Xml.dll
+C:\Users\burak\source\repos\VoiceControl\VoiceControl\bin\Debug\System.Xml.Linq.dll

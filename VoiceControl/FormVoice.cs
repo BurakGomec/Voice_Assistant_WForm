@@ -12,7 +12,7 @@ using System.Speech.Recognition;
 using System.Speech.Synthesis;
 using System.Media;
 using System.Diagnostics;
-using System.Globalization;//totitlecase
+using System.Globalization; //totitlecase
 using System.Threading;
 
 
@@ -32,7 +32,7 @@ namespace VoiceControl
             {
                 System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
                 Choices choices = new Choices();
-                string[] words = { "hello", "open paint", "open word", "open google", "open youtube", "what time is it","how are you"
+                string[] words = { "hello", "open paint", "open google", "open youtube", "what time is it","how are you"
                 ,"hey assistant","exit the application","stop listen","open other form","show todays exchange rate"};
                 choices.Add(words);
                 Grammar grammar = new Grammar(new GrammarBuilder(choices));
@@ -82,7 +82,6 @@ namespace VoiceControl
                 int x = rd.Next(1,3);
                 if (x == 1)
                 {
-                    //timer1.Enabled = true;
                     control = true;
                     result = "I'm listening to you,you can use these words:";
                     richTextBox1.AppendText("Assistant: " + result + Environment.NewLine);
@@ -115,11 +114,7 @@ namespace VoiceControl
             }
             else if(result == "how are you")
             {
-                //not complete
-            }
-            else if(result == "what time is it" )
-            {
-                result = "It is" + DateTime.Now.ToLongTimeString();
+                result = "I'm better now that I'm talking to you";
             }
             else if(result == "open youtube" )
             {
@@ -146,7 +141,7 @@ namespace VoiceControl
             }
             else if(result == "what time is it")
             {
-                result = "It is" + DateTime.Now.ToLongTimeString();
+                result = "It is " + DateTime.Now.ToLongTimeString();
             }
             else if(result == "show todays exchange rate")
             {
@@ -171,6 +166,8 @@ namespace VoiceControl
                 result = "Opening now";
                 control = true;
                 OpenAnotherForm();
+                rec.Dispose();
+                speech.Dispose();
             }
             //else
             //{
@@ -197,7 +194,6 @@ namespace VoiceControl
             player.SoundLocation = on;
             player.Play();
             StartingVoice();
-            //timer1.Start();
             pictureBox1.Enabled = false;
             labelActivate.Enabled = false;
            
@@ -214,15 +210,12 @@ namespace VoiceControl
         }
         private void Button1_Click(object sender, EventArgs e)
         {
-            
             rec.Dispose();
             speech.Dispose();
             this.Hide();
             Product f2 = new Product();
             f2.FormClosing += f2_FormClosing;
             f2.ShowDialog();
-
-
         }
         private void f2_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -231,10 +224,5 @@ namespace VoiceControl
             
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            //sayac++;
-            //not complete
-        }
     }
 }
