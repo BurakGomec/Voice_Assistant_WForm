@@ -10,19 +10,21 @@ using System.Windows.Forms;
 using System.Speech;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
-
+using System.Globalization;
 
 namespace VoiceControl
 {
     public partial class Product : Form
     {
         List<string> word = new List<string>();
+        bool control = false;
         public Product()
         {
             InitializeComponent();
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
             AddNumberChoices();
             TextBoxControl();
+            
             
         }
 
@@ -43,15 +45,14 @@ namespace VoiceControl
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
+            buttonAdd.Text = "Say The Commands";
             buttonAdd.Enabled = false;               
-            textBox_piece.Text = "";
-            textBox_price.Text = "";
             try
             {
                 SpeechRecognitionEngine rec = new SpeechRecognitionEngine(new System.Globalization.CultureInfo("en-US"));
                 Choices choices = new Choices();
                 string[] words = { "name","brand","price","piece","book","phone","apple","tv","music player","philips","samsung","lg",
-                    "smart watch","speaker","headphone","microphone"};
+                    "smart watch","speaker","headphone","microphone","ipod","iphone","game console","sony","computer","laptop"};
                 foreach(var x in word)
                 {
                     choices.Add(x);
@@ -80,20 +81,34 @@ namespace VoiceControl
         }
         private void SpeechProductRecognize(object sender, SpeechRecognizedEventArgs e)
         {
+           
             try
             {
+                //if (control)
+                //{
+                //    buttonAdd.Text = "Click To Again";
+                //    buttonAdd.Enabled = true;
+
+                //}
                 string result = e.Result.Text;
+                Kontrol1:
                 if (result == "name")
                 {
                     textBox_name.Focus();
                     textBox_name.BackColor = Color.LightGreen;
+                    if(result.Contains("1") || result.Contains("2") || result.Contains("3") || result.Contains("4") || result.Contains("5")
+                        || result.Contains("6") || result.Contains("7") || result.Contains("8") || result.Contains("9") || result.Contains("0"))
+                    {
+                        goto Kontrol1; // kontrol edilecek
+                    }
 
                 }
                 if (textBox_name.BackColor == Color.LightGreen)
                 {
                     if (result != "name" && result!="brand" && result!="price" && result!="piece")
                     {
-                        textBox_name.Text = result;
+                        string newy = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(result);
+                        textBox_name.Text = newy;
                         textBox_name.BackColor = Color.White;
                     }
                 }
@@ -106,7 +121,8 @@ namespace VoiceControl
                 {
                     if (result != "name" && result != "brand" && result!="price" && result!="piece")
                     {
-                        textBox_brand.Text = result;
+                        string newyy = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(result);
+                        textBox_brand.Text = newyy;
                         textBox_brand.BackColor = Color.White;
                     }
                 }
@@ -119,7 +135,8 @@ namespace VoiceControl
                 {
                     if (result != "name" && result != "brand" && result!="price" && result!="piece")
                     {
-                        textBox_price.Text = result;
+                        string newyyy = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(result);
+                        textBox_price.Text = newyyy;
                         textBox_price.BackColor = Color.White;
                     }
                 }
@@ -132,7 +149,8 @@ namespace VoiceControl
                 {
                     if (result != "name" && result != "brand" && result!="price" && result!="piece")
                     {
-                        textBox_piece.Text = result;
+                        string newy = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(result);
+                        textBox_piece.Text = newy;
                         textBox_piece.BackColor = Color.White;
                     }
                 }
@@ -142,6 +160,11 @@ namespace VoiceControl
                 {
                     DbOperations.AddProduct(textBox_name, textBox_brand, textBox_price, textBox_piece);
                     DbOperations.GetList(dataGridView1);
+                    textBox_name.Text = "";
+                    textBox_brand.Text = "";
+                    textBox_piece.Text = "";
+                    textBox_price.Text = "";
+
                 }
 
             }
@@ -161,6 +184,11 @@ namespace VoiceControl
             {
                 DbOperations.AddProduct(textBox_name, textBox_brand, textBox_price, textBox_piece);
                 DbOperations.GetList(dataGridView1);
+                textBox_name.Text = "";
+                textBox_brand.Text = "";
+                textBox_piece.Text = "";
+                textBox_price.Text = "";
+
             }
            
         }

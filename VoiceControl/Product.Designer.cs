@@ -65,9 +65,9 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(5, 5);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(261, 443);
+            this.panel1.Size = new System.Drawing.Size(261, 453);
             this.panel1.TabIndex = 0;
             // 
             // buttonManuelAdd
@@ -95,27 +95,25 @@
             // 
             this.textBox_piece.BackColor = System.Drawing.SystemColors.Info;
             this.textBox_piece.Font = new System.Drawing.Font("Century", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textBox_piece.Location = new System.Drawing.Point(84, 302);
+            this.textBox_piece.Location = new System.Drawing.Point(89, 299);
             this.textBox_piece.Name = "textBox_piece";
             this.textBox_piece.Size = new System.Drawing.Size(150, 28);
             this.textBox_piece.TabIndex = 7;
-            this.textBox_piece.Text = "Number 0-1000";
             // 
             // textBox_price
             // 
             this.textBox_price.BackColor = System.Drawing.SystemColors.Info;
             this.textBox_price.Font = new System.Drawing.Font("Century", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textBox_price.Location = new System.Drawing.Point(84, 241);
+            this.textBox_price.Location = new System.Drawing.Point(89, 239);
             this.textBox_price.Name = "textBox_price";
             this.textBox_price.Size = new System.Drawing.Size(150, 28);
             this.textBox_price.TabIndex = 6;
-            this.textBox_price.Text = "Number 0-1000";
             // 
             // textBox_brand
             // 
             this.textBox_brand.BackColor = System.Drawing.SystemColors.Info;
             this.textBox_brand.Font = new System.Drawing.Font("Century", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textBox_brand.Location = new System.Drawing.Point(84, 181);
+            this.textBox_brand.Location = new System.Drawing.Point(89, 178);
             this.textBox_brand.Name = "textBox_brand";
             this.textBox_brand.Size = new System.Drawing.Size(150, 28);
             this.textBox_brand.TabIndex = 5;
@@ -124,7 +122,7 @@
             // 
             this.textBox_name.BackColor = System.Drawing.SystemColors.Info;
             this.textBox_name.Font = new System.Drawing.Font("Century", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textBox_name.Location = new System.Drawing.Point(84, 114);
+            this.textBox_name.Location = new System.Drawing.Point(89, 111);
             this.textBox_name.Name = "textBox_name";
             this.textBox_name.Size = new System.Drawing.Size(150, 28);
             this.textBox_name.TabIndex = 1;
@@ -198,12 +196,12 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.dataGridView1.Location = new System.Drawing.Point(309, 128);
+            this.dataGridView1.Location = new System.Drawing.Point(291, 128);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(604, 178);
+            this.dataGridView1.Size = new System.Drawing.Size(630, 180);
             this.dataGridView1.TabIndex = 1;
             // 
             // buttonAdd
@@ -212,11 +210,11 @@
             this.buttonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAdd.Font = new System.Drawing.Font("Arial Nova", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.buttonAdd.ForeColor = System.Drawing.Color.Sienna;
-            this.buttonAdd.Location = new System.Drawing.Point(471, 380);
+            this.buttonAdd.Location = new System.Drawing.Point(466, 375);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(280, 40);
             this.buttonAdd.TabIndex = 2;
-            this.buttonAdd.Text = "Start Voice";
+            this.buttonAdd.Text = "Start Voice Control";
             this.buttonAdd.UseVisualStyleBackColor = false;
             this.buttonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
@@ -225,7 +223,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label6.ForeColor = System.Drawing.Color.Red;
-            this.label6.Location = new System.Drawing.Point(502, 41);
+            this.label6.Location = new System.Drawing.Point(497, 36);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(219, 39);
             this.label6.TabIndex = 4;
@@ -234,11 +232,12 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Century", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Century", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(1048, 57);
+            this.label7.Location = new System.Drawing.Point(925, 9);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(278, 23);
+            this.label7.Padding = new System.Windows.Forms.Padding(7);
+            this.label7.Size = new System.Drawing.Size(284, 37);
             this.label7.TabIndex = 5;
             this.label7.Text = "You Can Use These Words";
             // 
@@ -246,26 +245,31 @@
             // 
             this.listBox1.BackColor = System.Drawing.SystemColors.Info;
             this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBox1.Font = new System.Drawing.Font("Arial Nova", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.listBox1.Font = new System.Drawing.Font("Arial Nova", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 22;
+            this.listBox1.ItemHeight = 21;
             this.listBox1.Items.AddRange(new object[] {
             "Name/Brand/Price/Piece",
             "Numbers from 0 to 1000",
-            "Apple",
             "Phone",
             "TV",
             "Music Player",
-            "Philips",
-            "Samsung",
-            "LG",
             "Smart Watch",
             "Speaker",
             "Headphone",
-            "Microphone"});
-            this.listBox1.Location = new System.Drawing.Point(1050, 119);
+            "Microphone",
+            "Ipod",
+            "Game Console",
+            "Computer",
+            "Laptop",
+            "Apple",
+            "Philips",
+            "Samsung",
+            "LG",
+            "Sony"});
+            this.listBox1.Location = new System.Drawing.Point(944, 49);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(274, 308);
+            this.listBox1.Size = new System.Drawing.Size(274, 378);
             this.listBox1.TabIndex = 9;
             // 
             // Product
@@ -273,7 +277,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1332, 453);
+            this.ClientSize = new System.Drawing.Size(1230, 453);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -284,7 +288,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Product";
-            this.Padding = new System.Windows.Forms.Padding(5);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Products";
             this.Load += new System.EventHandler(this.Product_Load);

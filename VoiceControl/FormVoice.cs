@@ -65,12 +65,13 @@ namespace VoiceControl
         {
             DataSet dsDovizKur = new DataSet();
             dsDovizKur.ReadXml(@"http://www.tcmb.gov.tr/kurlar/today.xml");
-            richTextBox1.AppendText("Euro= " + dsDovizKur.Tables[1].Rows[3].ItemArray[4].ToString().Replace('.', ',') + "\n");
+            richTextBox1.AppendText("Euro= " + dsDovizKur.Tables[1].Rows[3].ItemArray[4].ToString().Replace('.', ',')+Environment.NewLine);
             richTextBox1.AppendText("Dolar= " + dsDovizKur.Tables[1].Rows[0].ItemArray[4].ToString().Replace('.',',')+Environment.NewLine);
         }
 
         private void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
+            
             string result = e.Result.Text;
             string newy = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(result);
             richTextBox1.AppendText("You: " + newy + Environment.NewLine);
@@ -89,7 +90,7 @@ namespace VoiceControl
                     player.Play();
                     speech.SpeakAsync(result);
                     richTextBox1.AppendText("\nHello, Open paint, Open google, Open youtube, What time is it, How are you," +
-                    "Hey assistant, Exit the application, Stop listen, Open other form,Show Todays Exchange Rate...");
+                    "Hey assistant, Exit the application, Stop listen, Open other form,Show Todays Exchange Rate..."+Environment.NewLine);
                 }
                 else
                 {
@@ -97,6 +98,15 @@ namespace VoiceControl
                 }
                 
              
+            }
+            else if (result.Contains("are you"))
+            {
+                //better than say how are you 
+                result = "I'm better now that I'm talking to you";
+            }
+            else if (result == "how are you")
+            {
+                result = "I'm better now that I'm talking to you";
             }
             else if (result == "hello")
             {
@@ -112,10 +122,7 @@ namespace VoiceControl
                 }
 
             }
-            else if(result == "how are you")
-            {
-                result = "I'm better now that I'm talking to you";
-            }
+            
             else if(result == "open youtube" )
             {
                 System.Diagnostics.Process.Start("https://www.youtube.com/?gl=TR");
@@ -151,7 +158,6 @@ namespace VoiceControl
                 speech.SpeakAsync(result);
                 ExchangeRate();
                 control = true;
-                //not complete
             }
             else if(result == "stop listen")
             {
@@ -169,21 +175,21 @@ namespace VoiceControl
                 rec.Dispose();
                 speech.Dispose();
             }
-            //else
-            //{
-            //    result = "Please repeat";
+            else
+            {
+                result = "Please repeat";
 
-            //}
+            }
             if (!control)
             {
                 richTextBox1.AppendText("Assistant: " + result + Environment.NewLine);
                 player.SoundLocation = understood;
                 player.Play();
                 speech.SpeakAsync(result);
-                
-               
+                Thread.Sleep(1200);
+
             }
-            Thread.Sleep(1000); //3000 olarak test et
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -195,7 +201,8 @@ namespace VoiceControl
             player.Play();
             StartingVoice();
             pictureBox1.Enabled = false;
-            labelActivate.Enabled = false;
+            //labelActivate.Enabled = false;
+            labelActivate.Visible = false;
            
         }
         private void OpenAnotherForm()
