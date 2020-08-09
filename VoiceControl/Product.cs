@@ -17,15 +17,13 @@ namespace VoiceControl
     public partial class Product : Form
     {
         List<string> word = new List<string>();
-        bool control = false;
         public Product()
         {
             InitializeComponent();
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
             AddNumberChoices();
-            TextBoxControl();
-            
-            
+            TextBoxControl();            
+      
         }
 
         private void Product_Load(object sender, EventArgs e)
@@ -84,24 +82,11 @@ namespace VoiceControl
            
             try
             {
-                //if (control)
-                //{
-                //    buttonAdd.Text = "Click To Again";
-                //    buttonAdd.Enabled = true;
-
-                //}
                 string result = e.Result.Text;
-                Kontrol1:
                 if (result == "name")
                 {
                     textBox_name.Focus();
                     textBox_name.BackColor = Color.LightGreen;
-                    if(result.Contains("1") || result.Contains("2") || result.Contains("3") || result.Contains("4") || result.Contains("5")
-                        || result.Contains("6") || result.Contains("7") || result.Contains("8") || result.Contains("9") || result.Contains("0"))
-                    {
-                        goto Kontrol1; // kontrol edilecek
-                    }
-
                 }
                 if (textBox_name.BackColor == Color.LightGreen)
                 {

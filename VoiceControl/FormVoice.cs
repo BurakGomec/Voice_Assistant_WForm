@@ -45,7 +45,6 @@ namespace VoiceControl
             {
                 MessageBox.Show("Lutfen bilgisayariniza 'en-US' paketi yukleyip tekrar deneyin", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
-                //SpeechRecognitionEngine rec = new SpeechRecognitionEngine(new System.Globalization.CultureInfo("en-UK"));
             }
             catch (Exception e)
             {
@@ -201,7 +200,6 @@ namespace VoiceControl
             player.Play();
             StartingVoice();
             pictureBox1.Enabled = false;
-            //labelActivate.Enabled = false;
             labelActivate.Visible = false;
            
         }
