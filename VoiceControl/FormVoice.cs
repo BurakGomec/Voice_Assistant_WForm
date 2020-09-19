@@ -74,7 +74,6 @@ namespace VoiceControl
             string result = e.Result.Text;
             string newy = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(result);
             richTextBox1.AppendText("You: " + newy + Environment.NewLine);
-            //timer1.Enabled = true;
             bool control = false;
             Random rd = new Random();
             if (result == "hey assistant")
@@ -100,7 +99,6 @@ namespace VoiceControl
             }
             else if (result.Contains("are you"))
             {
-                //better than say how are you 
                 result = "I'm better now that I'm talking to you";
             }
             else if (result == "how are you")
