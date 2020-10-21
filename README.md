@@ -7,3 +7,12 @@ In the second part of the application, the data received by using both the voice
 One of the main gains targeted in the report is that when voice assistants are based on a decision structure and we have a big data, an application of the desired size can be developed. 
  
 Keywords: Voice commands, Windows form application, Sqlite database, Speech class
+
+
+
+## Project ScreenShot :point_down:
+
+
+
+![VoiceAssistantSS](https://github.com/BurakGomec/Voice_Assistant_WForm_Internship_Project/blob/master/ss/ss1.png?raw=true)
+![VoiceAssistantSS](https://github.com/BurakGomec/Voice_Assistant_WForm_Internship_Project/blob/master/ss/ss2.png?raw=true)
