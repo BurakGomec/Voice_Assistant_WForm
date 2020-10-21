@@ -10,6 +10,10 @@ One of the main gains targeted in the report is that when voice assistants are b
 Keywords: Voice commands, Windows form application, Sqlite database, Speech class
 
 
+## Required Installations
+
+"MSSpeech_SR_en-US_TELE.msi" Install the file.
+
 
 ## Project ScreenShot :point_down:
 
