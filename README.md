@@ -1,4 +1,4 @@
-# Voice_Assistant
+# Voice Assistant WForm Project
 
 The project is built on voice command, which has been hugely popular recently. Voice command is used quite frequently today in mobile operating systems, personal home assistants, and many other areas such as the banking sector. 
 The application was developed in English language due to the Turkish language library insufficiency in Windows Form Application on Visual Studio. The success rate of the application depends on factors such as microphone and pronunciation level.
