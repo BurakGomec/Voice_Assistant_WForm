@@ -1,4 +1,5 @@
-# Voice_Assistant_WForm_Internship_Project
+# Voice_Assistant
+
 The project is built on voice command, which has been hugely popular recently. Voice command is used quite frequently today in mobile operating systems, personal home assistants, and many other areas such as the banking sector. 
 The application was developed in English language due to the Turkish language library insufficiency in Windows Form Application on Visual Studio. The success rate of the application depends on factors such as microphone and pronunciation level.
 The actions to increase the success rate are explained in detail in the report.
@@ -15,4 +16,7 @@ Keywords: Voice commands, Windows form application, Sqlite database, Speech clas
 
 
 ![VoiceAssistantSS](https://github.com/BurakGomec/Voice_Assistant_WForm_Internship_Project/blob/master/ss/ss1.png?raw=true)
+
+
+
 ![VoiceAssistantSS](https://github.com/BurakGomec/Voice_Assistant_WForm_Internship_Project/blob/master/ss/ss2.png?raw=true)
